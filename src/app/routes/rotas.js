@@ -21,17 +21,20 @@ module.exports = (app) => {
         )
     })
 
-    app.get('/lista', function (req, resp) {
+    app.get('/livros', function (req, resp) {
 
         const livroDao = new LivroDao(db)
 
-        livroDao.lista(function(erro, resultado){
-            resp.marko(
+        livroDao.lista()
+            .then(livros => resp.marko(
                 require('../views/livros/lista/lista.marko'),
                 {
-                    livros: resultado
+                    livros
                 }
+            ))
+            .catch(erro =>
+                console.log(erro)
             )
-        })
+
     })
 }
