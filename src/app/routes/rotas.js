@@ -44,5 +44,10 @@ module.exports = (app) => {
 
     app.post('/livros', function(req, resp){
         console.log(req.body)
+        livroDao.adiciona()
+            .then()
+            .catch(erro =>
+                console.log(erro)
+            )
     })
 }

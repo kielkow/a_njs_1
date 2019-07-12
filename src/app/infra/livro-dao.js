@@ -16,6 +16,14 @@ class LivroDao {
             )
         })
     }
+
+    adiciona(){
+        return new Promise((resolve, reject) => {
+            this._db.all(
+                ''
+            )
+        })
+    }
 }
 
 module.exports = LivroDao
