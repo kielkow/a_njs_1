@@ -54,4 +54,41 @@ module.exports = (app) => {
                 console.log(erro)
             )
     })
+
+    app.put('/livros', function (req, resp) {
+
+        console.log(req.body)
+
+        const livroDao = new LivroDao(db)
+
+        livroDao.atualiza(req.body)
+            .then(resp.redirect('/livros'))
+            .catch(erro =>
+                console.log(erro)
+            )
+    })
+
+    app.post('/livros', function (req, resp) {
+        console.log(req.body)
+
+        const livroDao = new LivroDao(db)
+
+        livroDao.remove(req.body)
+            .then(resp.redirect('/livros'))
+            .catch(erro =>
+                console.log(erro)
+            )
+    })
+
+    app.post('/livros', function (req, resp) {
+
+        const livroDao = new LivroDao(db)
+
+        livroDao.busca(req.body)
+            .then(console.log(req.body))
+            .catch(erro =>
+                console.log(erro)
+            )
+    })
+
 }
