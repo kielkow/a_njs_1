@@ -93,26 +93,27 @@ class LivroDao {
     }
 
     busca(id) {
-        return new Promisse((resolve, reject) => {
+
+        return new Promise((resolve, reject) => {
             this._db.get(
                 `
-                SELECT * FROM LIVROS
-                WHERE id = ?
+                    SELECT *
+                    FROM livros
+                    WHERE id = ?
                 `,
                 [
                     id
                 ],
-                (err, livro) => {
-                    if (err) {
-                        console.log(err)
-                        return reject('Nao foi possivel encontrar o livro')
+                (erro, livro) => {
+                    if (erro) {
+                        return reject('Não foi possível encontrar o livro!');
                     }
-
-                    return resolve(livro)
+                    return resolve(livro);
                 }
-            )
-        })
+            );
+        });
     }
+
 }
 
 module.exports = LivroDao
