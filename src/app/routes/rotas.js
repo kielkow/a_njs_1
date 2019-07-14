@@ -57,8 +57,6 @@ module.exports = (app) => {
 
     app.put('/livros', function (req, resp) {
 
-        console.log(req.body)
-
         const livroDao = new LivroDao(db)
 
         livroDao.atualiza(req.body)
