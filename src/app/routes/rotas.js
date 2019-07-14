@@ -39,7 +39,7 @@ module.exports = (app) => {
     })
 
     app.get('/livros/form', function (req, resp) {
-        resp.marko(require('../views/livros/form/form.marko'), {livro: {}})
+        resp.marko(require('../views/livros/form/form.marko'), { livro: {} })
     })
 
     app.post('/livros', function (req, resp) {
@@ -85,7 +85,7 @@ module.exports = (app) => {
         const livroDao = new LivroDao(db)
 
         livroDao.busca(id)
-            .then(livro => 
+            .then(livro =>
                 resp.marko(
                     require('../views/livros/form/form.marko'),
                     { livro: livro }
