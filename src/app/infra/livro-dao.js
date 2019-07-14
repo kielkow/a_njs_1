@@ -44,7 +44,7 @@ class LivroDao {
         })
     }
 
-    atualiza(livro, id) {
+    atualiza(livro) {
         return new Promise((resolve, reject) => {
             this._db.run(
                 `
@@ -56,7 +56,7 @@ class LivroDao {
                     livro.titulo,
                     livro.preco,
                     livro.descricao,
-                    id
+                    livro.id
                 ],
                 function (err) {
                     if (err) {
@@ -86,7 +86,7 @@ class LivroDao {
                         return reject('Nao foi possivel remover livro')
                     }
 
-                    resolve()
+                    return resolve()
                 }
             )
         })
@@ -94,7 +94,7 @@ class LivroDao {
 
     busca(id) {
         return new Promisse((resolve, reject) => {
-            this._db.run(
+            this._db.get(
                 `
                 SELECT * FROM LIVROS
                 WHERE id = ?
@@ -102,13 +102,13 @@ class LivroDao {
                 [
                     id
                 ],
-                function (err) {
+                (err, livro) => {
                     if (err) {
                         console.log(err)
                         return reject('Nao foi possivel encontrar o livro')
                     }
 
-                    resolve()
+                    return resolve(livro)
                 }
             )
         })
